@@ -1,0 +1,32 @@
+# 로또의 최고 순위와 최저 순위
+## 내 풀이
+def solution(lottos, win_nums):
+    if 0 in lottos:
+        lottos = list(set(lottos))
+        lottos.remove(0)
+    blur_zero = 6 - len(lottos)
+    win = 7
+    for num in lottos:
+        if num in win_nums:
+           win -= 1 
+    if win == 7 and blur_zero == 0:
+        blur_zero = 1
+    max_level = max(win-blur_zero,1)
+    min_level = min(win,6)
+    answer = [max_level,min_level]
+    return answer
+
+## 다른 사람 풀이
+def solution(lottos, win_nums):
+
+    rank=[6,6,5,4,3,2,1]
+
+    cnt_0 = lottos.count(0)
+    ans = 0
+    for x in win_nums:
+        if x in lottos:
+            ans += 1
+    return rank[cnt_0 + ans],rank[ans]
+    
+"""굳이 lottos에서 0을 빼내지 않고 했어도 되는데, 쓸데없는 메모리 낭비를 너무 많이 했다, 
+새로운 rank라는 list를 통해 더 쉽게 해결 할 수 있다는걸 깨달았다"""
