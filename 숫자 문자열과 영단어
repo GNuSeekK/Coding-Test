@@ -1,0 +1,39 @@
+# 숫자 문자열과 영단어
+## 내 풀이
+def solution(s):
+    
+    num_dict = {
+        'one' : '1',
+        'two' : '2',
+        'three' : '3',
+        'four' : '4',
+        'five' : '5',
+        'six' : '6',
+        'seven' : '7',
+        'eight' : '8',
+        'nine' : '9',
+        'zero' : '0'
+    }
+    start_point = 0
+    org_num = ''
+    for index in range(len(s)):
+        if s[start_point]  in num_dict.values():
+            org_num = org_num + s[start_point]
+            start_point = start_point + 1
+        if s[start_point:index+1] in num_dict.keys():
+            org_num = org_num + num_dict[s[start_point:index+1]]
+            start_point = index + 1
+        
+    return int(org_num)
+
+## 다른 사람 풀이
+num_dic = {"zero":"0", "one":"1", "two":"2", "three":"3", "four":"4", "five":"5", "six":"6", "seven":"7", "eight":"8", "nine":"9"}
+
+def solution(s):
+    answer = s
+    for key, value in num_dic.items():
+        answer = answer.replace(key, value)
+    return int(answer)
+    
+# for문으로 앞에서 부터 하나씩 가며 확인 하는 방법을 택했지만.. 훨씬 더 간단한 방법이 있었다는걸 보고 놀랬다.
+단순히 items()와 replace를 통해 조금 더 짧은 코드가 구현 가능하다는 것을 보았다.
