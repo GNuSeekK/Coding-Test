@@ -1,0 +1,19 @@
+import numpy as np
+
+def solution(board, moves):
+    basket = []
+    bombed_doll = 0
+    board = np.array(board)
+    shapes = board.shape
+    for num in moves:
+        num = num - 1
+        for index in range(shapes[0]):
+            if board[index][num] != 0:
+                basket.append(board[index][num])
+                board[index][num] = 0
+                if len(basket) >= 2 and (basket[-1] == basket[-2]):
+                    basket.pop(-1)
+                    basket.pop(-1)
+                    bombed_doll += 2
+                break
+    return bombed_doll
