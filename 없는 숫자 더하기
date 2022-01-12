@@ -1,0 +1,5 @@
+def solution(numbers):
+    sum_value = 45
+    for num in numbers:
+        sum_value -= num
+    return sum_value
