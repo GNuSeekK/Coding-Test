@@ -1,0 +1,18 @@
+import pandas as pd
+
+def solution(id_list, report, k):
+    report = list(set(report))
+    report = [x.split(' ') for x in report]
+    result = [0] * len(id_list)
+    id_index = {x : num for num, x in enumerate(id_list)}
+    id_reported = {x : [] for x in id_list}
+    for data in report:
+        id, rep_id = data
+        id_reported[rep_id].append(id)
+    for id in id_list:
+        if len(id_reported[id]) >= k:
+            for report_id in id_reported[id]:
+                result[id_index[report_id]] += 1
+    return result
+    
+    # 처음 시도에 pandas를 이용하려고 pandas를 import했지만, 막상 코드를 짜다보니 pandas를 이용하지 않는 편이 나을 것 같아 코드를 지우지 못하고 그대로 풀이를 제출함.
