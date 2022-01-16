@@ -1,0 +1,15 @@
+from itertools import combinations
+
+def solution(nums):
+    answer = 0
+    comb = list(combinations(nums,3))
+    sum_nums = [sum(x) for x in comb]
+    for x in sum_nums:
+        for i in range(2,x):
+            if x % i == 0:
+                answer +=1
+                break
+    answer = len(comb) - answer
+    return answer
+    
+# 다른 사람의 풀이를 보니, 마지막 "answer = len(comb) - answer"를 사용 하는 것보다, for문의 else를 이용하여 더해주는 게 깔끔하며, 연산을 줄여준다는 것을 깨달음.
