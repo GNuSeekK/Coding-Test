@@ -1,0 +1,24 @@
+# 내 답안
+def solution(participant, completion):
+    result_dict = {x : 0 for x in set(participant)}
+    for x in participant:
+        result_dict[x] += 1
+    for x in completion:
+        result_dict[x] -= 1
+    result_dict_keys = list(result_dict.keys())
+    result_dict_values = list(result_dict.values())
+    
+    answer = result_dict_keys[result_dict_values.index(1)]
+    return answer
+    
+ # 다른 이의 답안
+ 
+import collections
+
+def solution(participant, completion):
+    answer = collections.Counter(participant) - collections.Counter(completion)
+    return list(answer.keys())[0]
+
+## collections라는 모듈을 몰라 조금 길게 썼긴 하지만, 기본적으로 dictionary 형태를 이용하여 푼 것은 동일하다.
+## 하지만 https://docs.python.org/ko/3/library/collections.html#collections.Counter 를 보면 알 수 있듯이 subtract를 이용하여 빼는 방법과, 연산기호인 -를 이용하여 빼는 방식의 결과물이 다르게 나온다.
+## 내가 이용한 방법은 subtract를 이용한 방법이라고 할 수 있다.
